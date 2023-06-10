@@ -1,0 +1,631 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+$darkColor : rgba(24, 24, 27, 0.95);
+$radius: 10px;
+$radiusTwo : 8px;
+$radius-5: 5px;
+$darkColorTwo: rgba(24, 24, 27, 0.8);
+$yellow: #c8c650;
+$yellowHover: rgba(#c89e50, 0.2);
+$yellowHoverLighter: rgba(#c8aa50, 0.531);
+$border : #2C2E33;
+$red: #ff8787;
+$redHover: rgb(66, 33, 38);
+$colorGray: #A6A7AB;
+$containerColor: rgba(24, 24, 27, 0.8);
+$containerColorDark: rgba(11, 11, 12, 0.8);
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+   
+::-webkit-scrollbar-track {
+    background: rgba(24, 24, 27, 0.95);
+}
+   
+::-webkit-scrollbar-thumb {
+    background: #666; 
+}
+  
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.debug_background {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: -1;
+}
+
+.jerzys_tool_box {
+    position: absolute;
+    top: 2%;
+    left: 1.5%;
+    width: 600px;
+    height: 775px;
+    background-color: rgba(24, 24, 27, 0.95);
+    border-radius: $radius;
+    overflow: hidden;
+    .default-btn {
+        background-color: $yellowHover;
+        color: $yellow;
+        padding: 10px 20px;
+        border-radius: $radius-5;
+        border: 0;
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s ease all;
+        width: fit-content;
+        &:hover {
+            background-color: $yellowHoverLighter;
+        }
+    }
+    .jerzys_container_body {
+        &_item {
+            background-color: $containerColor;
+            border-radius: $radius-5;
+            padding: 16px;
+            margin-bottom: 10px;
+        }
+    }
+    .jerzys_tool_box_header {
+        padding: 0 10px;
+        border-bottom: 1px solid $border;
+        position: relative;
+        padding: 15px 20px;
+        span {
+            font-size: 22px;
+            color: $colorGray;
+            font-weight: bold;
+            text-transform: uppercase;  
+        }
+        .close-btn {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translate(0,-50%);
+            background-color: transparent;
+            border: 0;
+            span {
+                color: $red;
+                transition: 0.3s ease all;
+                cursor: pointer;
+                padding: 5px 5px;
+                border-radius: $radiusTwo;
+                &:hover {
+                    background-color: $redHover;
+                }
+            }
+        }
+    }
+    .jerzys_tool_box_body {
+        display: flex;
+        flex-direction: row;
+        &_nav {
+            width: 80px;
+            border-right: 1px solid $border;
+            display: flex;
+            flex-direction: column;
+            height: 775px;
+            gap: 10px;
+            padding: 16px;
+            .nav-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 10px;
+                .active {
+                    background-color: $yellowHover !important; 
+                }
+                .nav-item {
+                    color: $yellow;
+                    padding: 13px 0;
+                    border-radius: $radius-5;
+                    width: 61px;
+                    display: grid;
+                    place-content: center;
+                    cursor: pointer;
+                    transition: 0.3s ease all;
+                    &:hover {
+                        background-color: $yellowHover;
+                    }
+                    span {
+                        font-size: 27px;
+                    }
+                }
+            }
+        }
+        &_container {
+            width: 100vw;
+            padding: 16px;
+            .jerzys_container_box {
+                color: $colorGray;
+                max-height: 700px;
+                &_heading {
+                    margin-bottom: 10px;
+                    p {
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        padding: 0;
+                        margin: 0;
+                    }
+                    span {
+                        margin-top: -10px;
+                        font-size: 12px;
+                        color: $colorGray;
+                        font-weight: normal;
+                    }
+                }
+            }
+        }
+    }
+}
+
+table {
+    width: 100%;
+    th {
+        text-align: left;
+    }
+}
+
+.show_tool_box {
+    position: relative;
+    .tool_box {
+        display: none;
+    }
+    &:hover {
+        .tool_box {
+            z-index: 3;
+            position: absolute;
+            display: block;
+            width: max-content;
+            left: 50%;
+            transform: translate(-50%,0);
+            text-transform: uppercase;
+            background-color: #2f2f36e3;
+            color: white;
+            padding: 10px 10px;
+            border-radius: $radiusTwo;
+            bottom: -25px;
+            animation: slideDown 100ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+    }
+}
+
+.show_tool_box-left {
+    position: relative;
+    .tool_box {
+        z-index: 3;
+        position: absolute;
+        opacity: 0;
+        width: max-content;
+        transform: translate(-50%, 0);
+        background-color: rgba(47, 47, 54, 0.8901960784);
+        color: white;
+        padding: 7px 10px;
+        border-radius: $radius-5;
+        left: 105%;
+        top: 50%;
+        transform: translate(0,-50%);
+        font-size: 12px;
+        transition: 0.3s ease all;
+    }
+    &:hover {
+        .tool_box {
+            z-index: 3;
+            position: absolute;
+            display: block;
+            width: max-content;
+            transform: translate(-50%, 0);
+            background-color: rgba(47, 47, 54, 0.8901960784);
+            color: white;
+            padding: 7px 10px;
+            border-radius: $radius-5;
+            left: 105%;
+            top: 50%;
+            transform: translate(0,-50%);
+            font-size: 12px;
+            opacity: 1;
+        }
+    }
+}
+
+
+.menu_open {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: $darkColor;
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Roboto';
+    border-radius: $radius;
+    padding: 10px 10px;
+    border: 1px solid $darkColorTwo;
+    font-weight: bold;
+    border: 1px solid $yellow;
+    transition: 0.3s ease all;
+    &:hover {
+        background-color: $yellowHover;
+        cursor: pointer;
+    }
+}
+-- Modal
+.clear {
+    clear: both;
+  }
+  
+  .checkBox {
+    display: block;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    border: 3px solid rgba(255, 255, 255, 0);
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 0px 0px 1px $yellow;
+  }
+  
+  .checkBox div {
+    width: 60px;
+    height: 60px;
+    background-color: $yellow;
+    top: -52px;
+    left: -52px;
+    position: absolute;
+    transform: rotateZ(45deg);
+    z-index: 100;
+  }
+  
+  .checkBox input[type=checkbox]:checked + div {
+    left: -10px;
+    top: -10px;
+  }
+  
+  .checkBox input[type=checkbox] {
+    position: absolute;
+    left: 50px;
+    visibility: hidden;
+  }
+  
+  .transition {
+    transition: 300ms ease;
+  }
+  
+.modal {
+    background-color: rgba(24, 24, 27, 0.95);
+    border-radius: $radius;
+    border: 1px solid $darkColorTwo;
+    padding: 10px 0;
+    &_header {
+        color: $colorGray;
+        border-bottom: 1px solid $border;
+        font-weight: bold;
+        padding: 5px 10px;
+    }
+}
+
+.jerzys_container_search {
+    padding: 8px 11px;
+    min-width: 418px;
+    border: 0;
+    border-radius: 2px;
+    background: $yellowHover;
+    color: $yellow;
+    &:focus {
+        outline: none;
+    }
+}
+
+.default-label {
+    color: #A6A7AB;
+}
+
+.default-input {
+    border-radius: 2px;
+    background: $yellowHover;
+    border: 0;
+    border-radius: 2px;
+    color: $yellow;
+    padding: 8px 11px;
+    &:focus {
+        outline: none;
+    }
+}
+
+
+.algin-center {
+    align-items: center;
+}
+.d-flex {
+    display: flex !important;
+}
+
+.gap-5 {
+    gap: 5px;
+}
+
+.space-b {
+    justify-content: space-between;
+}
+
+.flex-column {
+    flex-direction: column;
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+    display: flex;
+}
+
+-- Animation
+
+.slideDown {
+    animation: slideDown 100ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.slideInLeft {
+    animation: slideInLeft 100ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.hideInLeft {
+    animation: hideInLeft 100ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.opacity {
+    animation: opacity 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        left: 50%;
+        transform: translate(-50%,-50%);
+        visibility: visible;
+    }
+
+    100% {
+        transform: translateY(0);
+        left: 50%;
+        transform: translate(-50%,20%);
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-200%);
+        visibility: visible;
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes hideInLeft {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-200%);
+        visibility: hidden;
+    }
+}
+
+.heading-text {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    color: #A6A7AB;
+}
+.table-scroll {
+    overflow-y: scroll;
+    height: 500px;
+    scrollbar-width: none;
+}
+.jerzys_table_box {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: $radius-5;
+    background-color: rgba(24, 24, 27, 0.8);
+    cursor: pointer;
+    .jerzys_table_box_desc_item {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        .name {
+            background-color: $yellowHover;
+            color: $yellow;
+            padding: 5px;
+            border-radius: $radius-5;
+            text-transform: capitalize;
+        }
+    }
+    &_body {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &_body_desc {
+        height: 0;
+        overflow: hidden;
+    }
+    .jerzys_table_box_desc {
+        height: 0;
+        overflow: hidden;
+        transition: 0.3s ease all;
+    }
+
+    &:hover {
+        background-color: $yellowHover;
+        border:  1px solid $yellow;
+        color: $yellow;
+    }
+
+    &:hover .jerzys_table_box_header {
+        color: $yellow;
+    }
+
+    &:hover .jerzys_table_box_desc {
+        height: 75px;
+    }
+    
+    &:hover .arrow {
+        transform: rotate(180deg);
+    }
+    
+    .arrow {
+        transition: 0.3s ease all;
+    }
+    .jerzys_table_box_desc_box_n {
+        display: flex;
+        gap: 10px;
+        padding: 5px 0;
+    }
+}
+
+.no-background {
+    background: transparent !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+
+.notify_box {
+    display: flex;
+    width: fit-content;
+    padding: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    align-items: center;
+    border-radius:10px;
+    &_message {
+        color: #f3f3f3;
+    }
+    button {
+        background-color: transparent;
+        border: 0;
+        color: white;
+        span {
+            font-size: 20px;
+            line-height: 24px;
+        }
+    }
+}
+
+.success {
+    border: 1px solid #4eac5d;
+    background-color: #488654fb;
+}
+
+.update {
+    border: 1px solid #4eacac;
+    background-color: #48867efb;
+}
+
+.error {
+    border: 1px solid #ac4e4e;
+    background-color: #864848fb;
+}
+
+// SPINNER
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  
+  .lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: $yellow;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+  
+  .lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+  }
+  
+  .lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  
+  .lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  
+  .lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+  }
+  
+  @keyframes lds-ellipsis1 {
+    0% {
+      transform: scale(0);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes lds-ellipsis3 {
+    0% {
+      transform: scale(1);
+    }
+  
+    100% {
+      transform: scale(0);
+    }
+  }
+  
+  @keyframes lds-ellipsis2 {
+    0% {
+      transform: translate(0, 0);
+    }
+  
+    100% {
+      transform: translate(24px, 0);
+    }
+  }
+  .lds-ellipsis {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
